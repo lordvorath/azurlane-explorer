@@ -1,4 +1,5 @@
 import urls, os, requests
+from parser import *
 
 html_files = "./html_files/"
 
@@ -22,15 +23,9 @@ def main_menu():
     user_choice = input("Select mode: Get data (G) - Explore data (X) - Exit (any)\n-> ")
     match user_choice.lower():
         case "g":
-            _, url = list_data_sources()
-            if url == "ALL":
-                for u in urls.list_of_urls:
-                    download_data_file(u)
-            else:
-                download_data_file(url)
+            get_data()
         case "x":
-            _, file = list_data_files()
-            print(f"Exploring {file}")
+            explore_data()
         case _:
             print("exiting...")
             return
@@ -48,7 +43,7 @@ def list_data_files():
     for i in range(len(existing_files)):
         print(f"{i}: {existing_files[i]}")
     choice, file = get_data_source(existing_files)
-    return choice, file
+    return choice, html_files + file
     
 def get_data_source(list_of_options):
     choice = input(f"Select data source: 0..{len(list_of_options) - 1} / 666 (all)\n-> ")
@@ -66,6 +61,19 @@ def download_data_file(url):
         get_html_page(urls.azurlane_wiki, url)
     except Exception as e:
         print(f"encountered an error: {e}")
+
+def get_data():
+    _, url = list_data_sources()
+    if url == "ALL":
+        for u in urls.list_of_urls:
+            download_data_file(u)
+    else:
+        download_data_file(url)
+
+def explore_data():
+    _, file = list_data_files()
+    print(f"Exploring {file}")
+    parse_list_of_ships_by_stats(file)
     
 
 if __name__ == "__main__":
