@@ -37,4 +37,4 @@ def parse_list_of_ships_by_stats(source_file, destination_folder):
 
 
 
-parse_list_of_ships_by_stats(".\html_files\List_of_Ships_by_Stats.html",".\csv_files")
+parse_list_of_ships_by_stats("./html_files/List_of_Ships_by_Stats.html","./csv_files")
