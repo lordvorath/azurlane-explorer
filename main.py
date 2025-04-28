@@ -1,5 +1,7 @@
-import urls, os, requests
-from parser import *
+import urls
+import os
+import requests
+from parser import parse_list_of_ships_by_stats
 
 html_files = "./html_files/"
 

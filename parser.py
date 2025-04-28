@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
-import re, os
+import re
+import os
 
 def parse_list_of_ships_by_stats(source_file, destination_folder):
     with open(source_file, encoding="utf-8") as f:
