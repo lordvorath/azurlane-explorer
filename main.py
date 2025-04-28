@@ -10,13 +10,15 @@ def main():
 
 
 def get_html_page(base_url, path):
+    if not os.path.isdir(html_files):
+        os.makedirs(html_files)
     existing_files = [f for f in os.listdir(html_files) if os.path.isfile(html_files + f)]
     if (f"{path}.html") in existing_files:
         overwrite = input(f"WARNING: {path}.html already exists. Overwrite? Y/N\n-> ")
         if overwrite.lower() == "n":
             return
     res = requests.get(base_url + path)
-    with open(f"./html_files/{path}.html", "wt") as f:
+    with open(f"./html_files/{path}.html", "wt", encoding="utf-8") as f:
         f.write(res.text)
 
 def main_menu():
