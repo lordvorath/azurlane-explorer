@@ -37,5 +37,5 @@ def parse_list_of_ships_by_stats(source_file, destination_folder):
                 f.write(content)
 
 
-
-parse_list_of_ships_by_stats("./html_files/List_of_Ships_by_Stats.html","./csv_files")
+if __name__ == "__main__":
+    parse_list_of_ships_by_stats("./html_files/List_of_Ships_by_Stats.html","./csv_files")
